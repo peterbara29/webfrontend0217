@@ -19,6 +19,7 @@ import Kereses from "./sajatosztalyok/Kereses"
 import Kutya from "./sajatosztalyok/Kutya"
 import Torles from "./sajatosztalyok/Torleskutya"
 import Torlesadat from "./sajatosztalyok/Torlesadatok"
+import Kezdolap from "./sajatosztalyok/Kezdolap"
 
 class App extends Component {
   constructor(props) {
@@ -55,16 +56,14 @@ class App extends Component {
       
       <div>
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="#home">
+      <Navbar.Brand href="Kezdolap">
         
-        Dice Roller
+        BP
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-        <Link to={"/"} className="navbar-brand">
-            bezKoder
-          </Link>
+        
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
               <Link to={"/home"} className="nav-link">
@@ -108,19 +107,7 @@ class App extends Component {
               </li>
             )}
           </div>
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
-          <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item>
-          </NavDropdown>
+          
         </Nav>
         <Nav>
         {currentUser ? (
@@ -170,6 +157,7 @@ class App extends Component {
 
             <Route path="/Kereses" component={Kereses} />
             <Route path="/Kutya" component={Kutya} />
+            <Route path="/Kezdolap" component={Kezdolap} />
 
           </Switch>
         </div>
