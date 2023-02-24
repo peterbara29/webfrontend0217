@@ -104,11 +104,11 @@ fetch(IP.ipcim+"adatoklekerdezese")
           <View >
           
           
-          <Text style={{color:"brown",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >{item.adatok_telefonszam} </Text> 
-          <Text style={{color:"purple",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >{item.adatok_emailcim} </Text> 
-          <Text style={{color:"blue",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >{item.adatok_uzenet} </Text>
+          <Text style={{color:"brown",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   > Telefonszám: {item.adatok_telefonszam} </Text> 
+          <Text style={{color:"purple",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   > Email cím: {item.adatok_emailcim} </Text> 
+          <Text style={{color:"blue",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   > Üzenet:{item.adatok_uzenet} </Text>
           <Text style={{color:"blue",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >{item.adatok_kutyaid} </Text>
-          <Text style={{color:"blue",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >{item.adatok_datum} </Text>
+          <Text style={{color:"blue",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   > Dátum: {item.adatok_datum} </Text>
 
           <TouchableOpacity
         style={styles.kekgomb}

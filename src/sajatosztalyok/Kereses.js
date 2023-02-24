@@ -1,17 +1,15 @@
 import React from 'react';
-import {StyleSheet, FlatList, ActivityIndicator, Text, View, Image , TouchableOpacity, TextInput } from 'react-native-web';
-
-const IP=require('./Ipcim')
+import {StyleSheet, FlatList, ActivityIndicator, Text, View, Image , TouchableOpacity, TextInput } from 'react-native';
+const IP=require("./Ipcim")
 
 export default class FetchExample extends React.Component {
 
   constructor(props){
     super(props);
     this.state ={ 
-      isLoading: true,
-      szo:"",
-      dataSource:[]
-
+        isLoading: true,
+        szo:"",
+        dataSource:[]
     }
   }
 
@@ -35,7 +33,7 @@ export default class FetchExample extends React.Component {
 
 
   componentDidMount(){
-    return fetch(IP.ipcim +  'film')
+    return fetch(IP.ipcim + 'kutya')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -53,26 +51,25 @@ export default class FetchExample extends React.Component {
   }
 
   keres=()=>{
-    //alert("hello")
-    var bemenet={
-      bevitel1:this.state.szo
-    }
-
-  fetch(IP.ipcim + "keres", {
-      method: "POST",
-      body: JSON.stringify(bemenet),
-      headers: {"Content-type": "application/json; charset=UTF-8"}
-    }
+      //alert("hello")
+      var bemenet={
+        bevitel1:this.state.szo
+      }
   
-  )
-  .then(x => x.json())
-  .then(y => {
-    //alert(JSON.stringify(y))
-    this.setState({ dataSource   :  y   })
+    fetch(IP.ipcim + "keres", {
+        method: "POST",
+        body: JSON.stringify(bemenet),
+        headers: {"Content-type": "application/json; charset=UTF-8"}
+      }
+    
+    )
+    .then(x => x.json())
+    .then(y =>{
+       //alert(JSON.stringify(y))
+       this.setState({ dataSource : y })
+      }
+    );
   }
-  );
-  }
-
 
   render(){
 
@@ -86,41 +83,39 @@ export default class FetchExample extends React.Component {
 
     return(
       <View style={{flex: 1, paddingTop:20}}>
-{/*-----------------------------------------------------------Keresés  */}
-        <Text style={{marginTop:50, marginLeft:20,marginRight:20}}>Add meg a keresendő szót:</Text>
+{/*-------------------------------------------------- Keresés */}
+        <Text style={{color:"brown",fontSize:20,textAlign:"center",marginTop:50, marginLeft:20,marginRight:20}}>Add meg a keresendő szót:</Text>
         <TextInput
-        style={{height: 40,  marginLeft:20,marginRight:20, marginBottom:20}}
+        style={{height: 40, marginLeft:20,marginRight:20}}
         placeholder="Szó megadása"
         onChangeText={(beirtszoveg)=>this.setState({szo:beirtszoveg})}
         value={this.state.szo}
       />
-      <TouchableOpacity
+       <TouchableOpacity
         style={styles.kekgomb}
-        onPress={()=>this.keres()}
+        onPress={ ()=>this.keres()}
       >
         <Text style={{color:"white",fontWeight:"bold",fontSize:15}}  >Keresés</Text>
       </TouchableOpacity>
-{/*--------------------------------------------------------- Találatok */}       
+{/*-------------------------------------------------- Találatok */}
         <FlatList
           data={this.state.dataSource}
           renderItem={({item}) => 
 
           <View >
-          <Text style={{color:"brown",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >{item.film_cim} </Text>
-          <Image  source={{uri: IP.ipcim + item.film_kep}} style={{width:300,height:300,marginLeft:"auto",marginRight:"auto"}} />  
+          
+          <Image  source={{uri: IP.ipcim + item.kutya_kep}} style={{width:300,height:300,marginLeft:"auto",marginRight:"auto"}} /> 
+          <Text style={{color:"brown",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >{item.tipus_nev} </Text> 
+          <Text style={{color:"purple",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >{item.kutya_neme} </Text> 
+          <Text style={{color:"green",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >{item.kutya_datum} </Text>
 
-          <TouchableOpacity
-        style={styles.kekgomb}
-        onPress={async ()=>this.szavazat(item.film_id)}
-      >
-        <Text style={{color:"white",fontWeight:"bold",fontSize:15}}  >Erre szavazok</Text>
-      </TouchableOpacity>
+          
           </View>
         
         }
 
         
-          keyExtractor={({film_id}, index) => film_id}
+          keyExtractor={({tipus_id}, index) => tipus_id}
         />
       </View>
     );
@@ -131,9 +126,9 @@ const styles = StyleSheet.create({
   
   kekgomb: {
     alignItems: "center",
-    backgroundColor: "blue",
+    backgroundColor: "brown",
     padding: 10,
-    width:300,
+    width:250,
     marginLeft:"auto",
     marginRight:"auto",
   }
